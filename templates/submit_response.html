@@ -1,0 +1,20 @@
+<!-- templates/submit_response.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Response</title>
+</head>
+<body>
+    <h1> Submit Survey Response</h1>
+    <form method="post" action="/submit_response">
+        <input type="hidden" name="question_number" value="1">
+        <label for="response">Your Response</label>
+        <textarea name="response" required></textarea><br><br>
+        <button type="submit">Submit Response</button>
+
+    </form>
+</body>
+</html>
