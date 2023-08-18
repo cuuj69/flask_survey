@@ -6,14 +6,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Survey</title>
+    <script>"{{ url_for('static', filename='create_survey.js') }}"</script>
 </head>
 <body>
     <h1>Create a New Survey</h1>
     <form method="post" action="/create_survey">
-        <label for="question">Survey Question:</label>
-        <input type="text" name="question" required><br><br>
-        <label for="options">Options (comma-separated):</label>
-        <input type="text" name="options" required><br><br>
+        <div class="question-container">
+            <div class="question">
+                <label for="question">Survey Question:</label>
+                <input type="text" name="question[]" required><br><br>
+                <label for="options">Options (comma-separated):</label>
+                <input type="text" name="options[]" required><br><br>
+                
+            </div>
+        </div>
+        <button type="button" id="add-question">Addd Another Question</button>
         <button type="submit">Create Survey</button>
     </form>
 </body>
