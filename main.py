@@ -18,21 +18,26 @@ def home():
 def create_survey():
     if request.method == 'POST':
         print(request.form)
-        question = request.form['question']
-        options = [opt.strip() for opt in request.form['options'].split(',')]
-
-        survey_id = generate_unique_id()
-        metadata_item = {
-            'PK':{'S':f'SURVEY#{survey_id}'},
-            'SK': {'S':f'METADATA#{survey_id}'},
-            'Question':{'S':question},
-            'Options':{'L': [{'S':option} for option in options]}
-        }
-        dynamodb.put_item(TableName=table_name,Item=metadata_item)
-
-       
-        return redirect(url_for('home'))
-    return render_template('create_survey.html')
+        # question = request.form['question'] 
+        # options = [opt.strip() for opt in request.form['options'].split(',')]
+        
+        questions = request.form.getlist('question[]')
+        options_list = request.form.getlist('options[]')
+        
+        for question, options_str in zip(questions,options_list):
+            options =[opt.strip() for opt in options_str.split(',')]
+    
+            survey_id = generate_unique_id()
+            metadata_item = {
+                'PK':{'S':f'SURVEY#{survey_id}'},
+                'SK': {'S':f'METADATA#{survey_id}'},
+                'Question':{'S':question},
+                'Options':{'L': [{'S':option} for option in options]}
+            }
+            dynamodb.put_item(TableName=table_name,Item=metadata_item)
+            
+            return redirect(url_for('home'))
+        return render_template('create_survey.html')
 
 @app.route('/submit_response',methods=['POST'])
 def submit_response():
