@@ -1,15 +1,24 @@
 <!-- templates/home.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survey Application</title>
+    <!-- ... (your head content) ... -->
 </head>
 <body>
-
-    <h1>Welcome to the Survey Application</h1>
-    <a href="{{ url_for('create_survey') }}">Create a New Survey </a>
+    <h1>Welcome to Your Survey App</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('create_survey') }}">Create New Survey</a></li>
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <p>Use this platform to create and manage surveys.</p>
 </body>
 </html>
