@@ -1,24 +1,32 @@
-<!-- templates/home.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ... (your head content) ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>surveyMonk</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body>
-    <h1>Welcome to Your Survey App</h1>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('create_survey') }}">Create New Survey</a></li>
-                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
-            {% else %}
-                <li><a href="{{ url_for('register') }}">Register</a></li>
-                <li><a href="{{ url_for('login') }}">Login</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    <p>Use this platform to create and manage surveys.</p>
+<body class="retro-bg">
+    <div class="container">
+        <header class="header">
+            <h1 class="retro-text">Welcome to surveyMonk </h1>
+        </header>
+        <nav class="navigation">
+            <ul>
+                <li><a href="{{ url_for('home') }}" class="retro-link">Home</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('create_survey') }}" class="retro-link">Create New Survey</a></li>
+                    <li><a href="{{ url_for('dashboard') }}" class="retro-link">Dashboard</a></li>
+                    <li><a href="{{ url_for('logout') }}" class="retro-link">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('register') }}" class="retro-link">Register</a></li>
+                    <li><a href="{{ url_for('login') }}" class="retro-link">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <main class="content">
+            <p class="retro-text">Use this platform to create and manage surveys.</p>
+        </main>
+    </div>
 </body>
 </html>
