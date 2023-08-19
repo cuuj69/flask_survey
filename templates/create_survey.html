@@ -1,12 +1,10 @@
 <!-- templates/create_survey.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Survey</title>
-    <script>"{{ url_for('static', filename='create_survey.js') }}"</script>
 </head>
 <body>
     <h1>Create a New Survey</h1>
@@ -17,11 +15,36 @@
                 <input type="text" name="question[]" required><br><br>
                 <label for="options">Options (comma-separated):</label>
                 <input type="text" name="options[]" required><br><br>
-                
+                <button type="button" class="delete-question">Delete Question</button>
             </div>
         </div>
-        <button type="button" id="add-question">Addd Another Question</button>
+        <button type="button" id="add-question">Add Question</button>
         <button type="submit">Create Survey</button>
     </form>
+    <script>
+        const questionContainer = document.querySelector('.question-container');
+        const addQuestionButton = document.getElementById('add-question');
+
+        addQuestionButton.addEventListener('click', () => {
+            const newQuestion = document.createElement('div');
+            newQuestion.className = 'question';
+            newQuestion.innerHTML = `
+                <label for="question">Survey Question:</label>
+                <input type="text" name="question[]" required><br><br>
+                <label for="options">Options (comma-separated):</label>
+                <input type="text" name="options[]" required><br><br>
+                <button type="button" class="delete-question">Delete Question</button>
+            `;
+            questionContainer.appendChild(newQuestion);
+        });
+
+        // Add event listener to delete buttons
+        questionContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('delete-question')) {
+                const questionDiv = event.target.parentNode;
+                questionDiv.remove();
+            }
+        });
+    </script>
 </body>
 </html>
