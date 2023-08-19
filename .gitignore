@@ -4,3 +4,5 @@
 *.txt
 __pycache__
 *.pyc
+views.py
+create_survey.js
