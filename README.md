@@ -48,11 +48,6 @@ Start the application using the following commands
 ```bash
 # Development mode
 $ python main.py
-
-Select the source and target languages, and then choose an HTML file to translate and convert to PDF.
-
-Click the "Translate and Generate PDF" button to initiate the translation and PDF generation process.
-
 ```
 
 Support and Contributions
