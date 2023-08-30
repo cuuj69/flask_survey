@@ -38,7 +38,8 @@ Follow these steps to set up the application locally:
 ```bash
 $ git clone https://github.com/your-username/simple-survey-app.git
 $ cd simple-survey-app
-$ npm install
+$ python -m venv [your-venv name]
+$ venv/Scripts/activate
 ```
 
 ## Usage
